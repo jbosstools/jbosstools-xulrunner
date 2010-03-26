@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.mozilla.xpcom.feature_1.9.1.2a.jar" id="org.mozilla.xpcom.feature" version="1.9.1.2a"/>
+   <feature url="features/org.mozilla.xulrunner.feature_1.9.1.2.jar" id="org.mozilla.xulrunner.feature" version="1.9.1.2"/>
+</site>
