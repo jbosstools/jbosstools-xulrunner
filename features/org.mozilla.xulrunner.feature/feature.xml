@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.mozilla.xulrunner.feature"
+      label="XulRunner Feature"
+      version="1.9.1.2"
+      provider-name="JBoss by Red Hat">
+
+   <description>
+      XulRunner Feature
+   </description>
+
+   <copyright>
+      (c) 2010 JBoss by Red Hat
+   </copyright>
+
+   <license>
+      EPL, what else?
+   </license>
+
+   <plugin
+         id="org.mozilla.xpcom"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.mozilla.xulrunner.win32.win32.x86"
+	 os="win32"
+	 ws="win32"
+	 arch="x86"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.mozilla.xulrunner.gtk.linux.x86_64"
+	 os="linux"
+	 ws="gtk"
+	 arch="x86_64"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.mozilla.xulrunner.gtk.linux.x86"
+	 os="linux"
+	 ws="gtk"
+	 arch="x86"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.mozilla.xulrunner.cocoa.macosx"
+	 os="macosx"
+	 ws="cocoa"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.mozilla.xulrunner.carbon.macosx"
+	 os="macosx"
+	 ws="carbon"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,11 @@
+<feature id="org.mozilla.xulrunner.feature" label="XulRunner Feature" provider-name="JBoss by Red Hat" version="1.9.1.2">
+  <description>XulRunner Feature</description>
+  <copyright>(c) 2010 JBoss by Red Hat</copyright>
+  <license>EPL, what else?</license>
+  <plugin unpack="false" id="org.mozilla.xpcom" install-size="742" version="0.0.0" download-size="558"/>
+  <plugin unpack="false" id="org.mozilla.xulrunner.win32.win32.x86" os="win32" install-size="21742" arch="x86" ws="win32" version="0.0.0" download-size="9535"/>
+  <plugin unpack="false" id="org.mozilla.xulrunner.gtk.linux.x86_64" os="linux" install-size="39602" arch="x86_64" ws="gtk" version="0.0.0" download-size="13520"/>
+  <plugin unpack="false" id="org.mozilla.xulrunner.gtk.linux.x86" os="linux" install-size="24003" arch="x86" ws="gtk" version="0.0.0" download-size="9543"/>
+  <plugin unpack="false" id="org.mozilla.xulrunner.cocoa.macosx" os="macosx" install-size="33470" ws="cocoa" version="0.0.0" download-size="10857"/>
+  <plugin unpack="false" id="org.mozilla.xulrunner.carbon.macosx" os="macosx" install-size="33470" ws="carbon" version="0.0.0" download-size="10857"/>
+</feature>

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='2'>
+  <unit id='org.mozilla.xpcom.feature.feature.jar' version='1.9.1.2a'>
+    <properties size='6'>
+      <property name='org.eclipse.equinox.p2.name' value='XPCOM Feature'/>
+      <property name='org.eclipse.equinox.p2.description' value='XPCOM Feature'/>
+      <property name='org.eclipse.equinox.p2.provider' value='JBoss by Red Hat'/>
+      <property name='maven-artifactId' value='org.mozilla.xpcom.feature'/>
+      <property name='maven-groupId' value='org.jboss.tools'/>
+      <property name='maven-version' value='1.9.1.2a'/>
+    </properties>
+    <provides size='3'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.mozilla.xpcom.feature.feature.jar' version='1.9.1.2a'/>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='feature' version='1.0.0'/>
+      <provided namespace='org.eclipse.update.feature' name='org.mozilla.xpcom.feature' version='1.9.1.2a'/>
+    </provides>
+    <filter>
+      (org.eclipse.update.install.features=true)
+    </filter>
+    <artifacts size='1'>
+      <artifact classifier='org.eclipse.update.feature' id='org.mozilla.xpcom.feature' version='1.9.1.2a'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='zipped'>
+          true
+        </instruction>
+      </instructions>
+    </touchpointData>
+    <licenses size='1'>
+      <license>
+        EPL, what else?
+      </license>
+    </licenses>
+    <copyright>
+      (c) 2010 JBoss by Red Hat
+    </copyright>
+  </unit>
+  <unit id='org.mozilla.xpcom.feature.feature.group' version='1.9.1.2a' singleton='false'>
+    <update id='org.mozilla.xpcom.feature.feature.group' range='[0.0.0,1.9.1.2a)' severity='0'/>
+    <properties size='7'>
+      <property name='org.eclipse.equinox.p2.name' value='XPCOM Feature'/>
+      <property name='org.eclipse.equinox.p2.description' value='XPCOM Feature'/>
+      <property name='org.eclipse.equinox.p2.provider' value='JBoss by Red Hat'/>
+      <property name='org.eclipse.equinox.p2.type.group' value='true'/>
+      <property name='maven-artifactId' value='org.mozilla.xpcom.feature'/>
+      <property name='maven-groupId' value='org.jboss.tools'/>
+      <property name='maven-version' value='1.9.1.2a'/>
+    </properties>
+    <provides size='1'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.mozilla.xpcom.feature.feature.group' version='1.9.1.2a'/>
+    </provides>
+    <requires size='2'>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.mozilla.xpcom' range='0.0.0'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.mozilla.xpcom.feature.feature.jar' range='[1.9.1.2a,1.9.1.2a]'>
+        <filter>
+          (org.eclipse.update.install.features=true)
+        </filter>
+      </required>
+    </requires>
+    <touchpoint id='null' version='0.0.0'/>
+    <licenses size='1'>
+      <license>
+        EPL, what else?
+      </license>
+    </licenses>
+    <copyright>
+      (c) 2010 JBoss by Red Hat
+    </copyright>
+  </unit>
+</units>

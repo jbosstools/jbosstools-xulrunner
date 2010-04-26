@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='1'>
+  <artifact classifier='org.eclipse.update.feature' id='org.mozilla.xpcom.feature' version='1.9.1.2a'>
+    <properties size='7'>
+      <property name='artifact.size' value='1935'/>
+      <property name='download.size' value='1935'/>
+      <property name='download.md5' value='2bf971eb8c5925ec133b83c1a3ded674'/>
+      <property name='maven-artifactId' value='org.mozilla.xpcom.feature'/>
+      <property name='maven-groupId' value='org.jboss.tools'/>
+      <property name='maven-version' value='1.9.1.2a'/>
+      <property name='download.contentType' value='application/zip'/>
+    </properties>
+  </artifact>
+</artifacts>
