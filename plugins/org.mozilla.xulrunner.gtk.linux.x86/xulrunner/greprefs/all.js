@@ -59,9 +59,9 @@ pref("general.warnOnAboutConfig", true);
 pref("browser.bookmarks.max_backups",       5);
 
 pref("browser.cache.disk.enable",           true);
-//@line 63 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 63 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 pref("browser.cache.disk.capacity",         51200);
-//@line 67 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 67 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 pref("browser.cache.memory.enable",         true);
 //pref("browser.cache.memory.capacity",     -1);
 // -1 = determine dynamically, 0 = none, n = memory capacity in kilobytes
@@ -70,7 +70,7 @@ pref("browser.cache.disk_cache_ssl",        false);
 pref("browser.cache.check_doc_frequency",   3);
 
 pref("browser.cache.offline.enable",           true);
-//@line 76 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 76 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 // offline cache capacity in kilobytes
 pref("browser.cache.offline.capacity",         512000);
 
@@ -81,7 +81,7 @@ pref("offline-apps.quota.max",        204800);
 // the user should be warned if offline app disk usage exceeds this amount
 // (in kilobytes)
 pref("offline-apps.quota.warn",        51200);
-//@line 92 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 92 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
 // Fastback caching - if this pref is negative, then we calculate the number
 // of content viewers to cache based on the amount of available memory.
@@ -145,11 +145,11 @@ pref("media.enforce_same_site_origin", false);
 // Media cache size in kilobytes
 pref("media.cache_size", 51200);
 
-//@line 156 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 156 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 pref("media.ogg.enabled", true);
-//@line 159 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 159 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 pref("media.wave.enabled", true);
-//@line 161 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 161 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
 // Whether to autostart a media element with an |autoplay| attribute
 pref("media.autoplay.enabled", true);
@@ -167,7 +167,7 @@ pref("accessibility.warn_on_browsewithcaret", true);
 
 pref("accessibility.browsewithcaret_shortcut.enabled", true);
 
-//@line 179 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 179 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 // Tab focus model bit field:
 // 1 focuses text controls, 2 focuses other form elements, 4 adds links.
 // Most users will want 1, 3, or 7.
@@ -180,7 +180,7 @@ pref("accessibility.tabfocus_applies_to_xul", false);
 // unless this preference was set manually
 pref("ui.scrollToClick", 0);
 
-//@line 195 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 195 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
 pref("accessibility.usetexttospeech", "");
 pref("accessibility.usebrailledisplay", "");
@@ -524,9 +524,9 @@ pref("dom.storage.enabled", true);
 pref("dom.storage.default_quota",      5120);
 
 // Parsing perf prefs. For now just mimic what the old code did.
-//@line 539 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 539 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 pref("content.sink.pending_event_mode", 0);
-//@line 541 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 541 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
 // Disable popups from plugins by default
 //   0 = openAllowed
@@ -575,7 +575,7 @@ pref("network.protocol-handler.external.data", false);
 pref("network.protocol-handler.external.ms-help", false);
 pref("network.protocol-handler.external.shell", false);
 pref("network.protocol-handler.external.vnd.ms.radio", false);
-//@line 592 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 592 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 pref("network.protocol-handler.external.disk", false);
 pref("network.protocol-handler.external.disks", false);
 pref("network.protocol-handler.external.afp", false);
@@ -718,7 +718,10 @@ pref("network.IDN.whitelist.jp", true);
 pref("network.IDN.whitelist.kr", true);
 pref("network.IDN.whitelist.li", true);
 pref("network.IDN.whitelist.lt", true);
+pref("network.IDN.whitelist.lu", true);
 pref("network.IDN.whitelist.no", true);
+pref("network.IDN.whitelist.nu", true);
+pref("network.IDN.whitelist.nz", true);
 pref("network.IDN.whitelist.pl", true);
 pref("network.IDN.whitelist.pr", true);
 pref("network.IDN.whitelist.se", true);
@@ -728,12 +731,21 @@ pref("network.IDN.whitelist.tm", true);
 pref("network.IDN.whitelist.tw", true);
 pref("network.IDN.whitelist.vn", true);
 
-// non-ccTLDs
+// IDN ccTLDs
+// sa, Saudi Arabia, .<al-Saudiah>
+pref("network.IDN.whitelist.xn--mgberp4a5d4ar", true); 
+// ru, Russian Federation, .<RF>
+pref("network.IDN.whitelist.xn--p1ai", true);
+// jo, Jordan, .<Al-Ordon>
+pref("network.IDN.whitelist.xn--mgbayh7gpa", true);
+
+// gTLDs
 pref("network.IDN.whitelist.biz", true);
 pref("network.IDN.whitelist.cat", true);
 pref("network.IDN.whitelist.info", true);
 pref("network.IDN.whitelist.museum", true);
 pref("network.IDN.whitelist.org", true);
+pref("network.IDN.whitelist.tel", true);
 
 // NOTE: Before these can be removed, one of bug 414812's tests must be updated
 //       or it will likely fail!  Please CC jwalden+bmo on the bug associated
@@ -813,7 +825,7 @@ pref("network.negotiate-auth.gsslib", "");
 // Specify if the gss lib comes standard with the OS
 pref("network.negotiate-auth.using-native-gsslib", true);
 
-//@line 835 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 847 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
 // Controls which NTLM authentication implementation we default to. True forces
 // the use of our generic (internal) NTLM authentication implementation vs. any
@@ -841,9 +853,7 @@ pref("network.ntlm.send-lm-response", false);
 
 pref("permissions.default.image",           1); // 1-Accept, 2-Deny, 3-dontAcceptForeign
 
-//@line 864 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
 pref("network.proxy.type",                  5);
-//@line 871 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
 
 pref("network.proxy.ftp",                   "");
 pref("network.proxy.ftp_port",              0);
@@ -1194,6 +1204,10 @@ pref("editor.positioning.offset",            0);
 pref("dom.max_chrome_script_run_time", 20);
 pref("dom.max_script_run_time", 10);
 
+// How long a plugin is allowed to process a synchronous IPC message
+// before we consider it "hung".
+pref("dom.ipc.plugins.timeoutSecs", 45);
+
 pref("svg.enabled", true);
 pref("svg.smil.enabled", false);
 
@@ -1229,15 +1243,15 @@ pref("font.minimum-size.x-western", 0);
 pref("font.minimum-size.x-unicode", 0);
 pref("font.minimum-size.x-user-def", 0);
 
-//@line 1654 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 1662 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
-//@line 2078 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 2086 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
-//@line 2281 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 2289 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
-//@line 2377 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 2385 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
-//@line 2380 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 2388 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 // Handled differently under Mac/Windows
 pref("network.hosts.smtp_server", "localhost");
 pref("network.hosts.pop_server", "pop");
@@ -1507,15 +1521,15 @@ pref("ui.panel.default_level_parent", true);
 
 pref("mousewheel.system_scroll_override_on_root_content.enabled", false);
 
-//@line 2652 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 2660 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
-//@line 2720 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 2728 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
-//@line 2746 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 2754 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
-//@line 2766 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 2774 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
-//@line 2774 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 2782 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
 // Login Manager prefs
 pref("signon.rememberSignons",              true);
@@ -1552,12 +1566,15 @@ pref("image.cache.timeweight", 500);
 // The default Accept header sent for images loaded over HTTP(S)
 pref("image.http.accept", "image/png,image/*;q=0.8,*/*;q=0.5");
 
-//@line 2816 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 2824 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
-//@line 2821 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/modules/libpref/src/init/all.js"
+//@line 2829 "/builds/slave/xulrunner_linux_build/build/modules/libpref/src/init/all.js"
 
 // Enable/Disable the geolocation API for content
 pref("geo.enabled", true);
+
+// Enable/Disable the orientation API for content
+pref("accelerometer.enabled", true);
 
 // Enable/Disable HTML5 parser
 pref("html5.enable", false);

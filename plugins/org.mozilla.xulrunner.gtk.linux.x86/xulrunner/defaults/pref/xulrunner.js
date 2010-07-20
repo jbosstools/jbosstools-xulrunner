@@ -34,7 +34,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-//@line 38 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/xulrunner/app/xulrunner.js"
+//@line 38 "/builds/slave/xulrunner_linux_build/build/xulrunner/app/xulrunner.js"
 
 // We need to override the default values of these preferences since all.js
 // assumes these are in the navigator package, which for us is non-existant.
@@ -59,7 +59,7 @@ pref("xpinstall.dialog.progress.skin", "chrome://mozapps/content/extensions/exte
 pref("xpinstall.dialog.progress.type.chrome", "Extension:Manager");
 pref("xpinstall.dialog.progress.type.skin", "Extension:Manager");
 pref("xpinstall.enabled", true);
-//@line 65 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/xulrunner/app/xulrunner.js"
+//@line 65 "/builds/slave/xulrunner_linux_build/build/xulrunner/app/xulrunner.js"
 pref("browser.preferences.instantApply", true);
-//@line 70 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/xulrunner/app/xulrunner.js"
+//@line 70 "/builds/slave/xulrunner_linux_build/build/xulrunner/app/xulrunner.js"
 pref("browser.preferences.animateFadeIn", false);
