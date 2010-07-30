@@ -2,7 +2,7 @@
 <feature
       id="org.mozilla.xulrunner.feature"
       label="XulRunner Feature"
-      version="1.9.2.0"
+      version="1.9.2"
       provider-name="JBoss by Red Hat">
 
    <description>
