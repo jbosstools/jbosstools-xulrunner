@@ -1,4 +1,4 @@
-//@line 44 "/builds/slave/xulrunner_linux_build/build/toolkit/content/debug.js"
+//@line 44 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/content/debug.js"
 
 var EXPORTED_SYMBOLS = ["NS_ASSERT"];
 

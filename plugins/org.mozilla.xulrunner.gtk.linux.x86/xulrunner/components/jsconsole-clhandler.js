@@ -1,4 +1,4 @@
-//@line 41 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/components/console/jsconsole-clhandler.js"
+//@line 41 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/components/console/jsconsole-clhandler.js"
 const Cc = Components.classes;
 const Ci = Components.interfaces;
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");

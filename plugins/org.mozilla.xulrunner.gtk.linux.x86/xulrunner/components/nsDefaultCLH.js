@@ -1,4 +1,4 @@
-//@line 38 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/components/nsDefaultCLH.js"
+//@line 38 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/components/nsDefaultCLH.js"
 
 const nsISupports              = Components.interfaces.nsISupports;
 

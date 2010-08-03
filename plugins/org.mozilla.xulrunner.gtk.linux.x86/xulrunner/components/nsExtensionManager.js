@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 /*
-//@line 44 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 44 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
 */
 
 //
@@ -1399,7 +1399,7 @@ DirectoryInstallLocation.prototype = {
   QueryInterface: XPCOMUtils.generateQI([Ci.nsIInstallLocation])
 };
 
-//@line 1592 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 1592 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
 
 /**
  * Safely attempt to install or uninstall a given item ID in an install
@@ -2053,7 +2053,7 @@ function ExtensionManager() {
     InstallLocations.put(systemLocation);
   }
 
-//@line 2260 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 2260 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
 
   // Register Additional Install Locations
   var categoryManager = Cc["@mozilla.org/categorymanager;1"].
@@ -4949,13 +4949,13 @@ ExtensionManager.prototype = {
       // count to 0 to prevent this dialog from being displayed again.
       this._downloadCount = 0;
       var result;
-//@line 5156 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 5156 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
       result = this._confirmCancelDownloads(this._downloadCount,
                                             "quitCancelDownloadsAlertTitle",
                                             "quitCancelDownloadsAlertMsgMultiple",
                                             "quitCancelDownloadsAlertMsg",
                                             "dontQuitButtonWin");
-//@line 5168 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 5168 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
       if (subject instanceof Ci.nsISupportsPRBool)
         subject.data = result;
     }
@@ -5498,7 +5498,7 @@ ExtensionItemUpdater.prototype = {
   _listener           : null,
 
   /* ExtensionItemUpdater
-//@line 5736 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 5736 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
   */
   checkForUpdates: function ExtensionItemUpdater_checkForUpdates(aItems,
                                                                  aItemCount,
@@ -5897,7 +5897,7 @@ RDFItemUpdater.prototype = {
 
   onDatasourceLoaded: function RDFItemUpdater_onDatasourceLoaded(aDatasource, aLocalItem) {
     /*
-//@line 6175 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 6175 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
     */
     if (!aDatasource.GetAllResources().hasMoreElements()) {
       LOG("RDFItemUpdater:onDatasourceLoaded: Datasource empty.\r\n" +

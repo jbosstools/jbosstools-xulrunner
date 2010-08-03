@@ -1,4 +1,4 @@
-//@line 37 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/components/urlformatter/src/nsURLFormatter.js"
+//@line 37 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/components/urlformatter/src/nsURLFormatter.js"
 /**
  * @class nsURLFormatterService
  *

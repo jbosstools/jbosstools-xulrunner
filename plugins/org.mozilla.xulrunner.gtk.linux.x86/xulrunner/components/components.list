@@ -3,8 +3,8 @@ nsHandlerService.js
 nsWebHandlerApp.js
 NetworkGeolocationProvider.js
 GPSDGeolocationProvider.js
-txEXSLTRegExFunctions.js
 nsBadCertHandler.js
+txEXSLTRegExFunctions.js
 nsHelperAppDlg.js
 nsProgressDialog.js
 nsURLFormatter.js
@@ -35,8 +35,6 @@ nsUpdateTimerManager.js
 nsUpdateServiceStub.js
 pluginGlue.js
 nsContentDispatchChooser.js
-libmozgnome.so
 libdbusservice.so
 libimgicon.so
-libnkgnomevfs.so
 nsXULAppInstall.js

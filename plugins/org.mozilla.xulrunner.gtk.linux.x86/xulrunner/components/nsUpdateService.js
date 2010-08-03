@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 /*
-//@line 44 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 44 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/update/src/nsUpdateService.js.in"
 */
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 Components.utils.import("resource://gre/modules/FileUtils.jsm");
@@ -39,7 +39,7 @@ const CATEGORY_UPDATE_TIMER               = "update-timer";
 
 const KEY_APPDIR          = "XCurProcD";
 const KEY_GRED            = "GreD";
-//@line 87 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 87 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/update/src/nsUpdateService.js.in"
 
 const DIR_UPDATES         = "updates";
 const FILE_UPDATE_STATUS  = "update.status";
@@ -111,7 +111,7 @@ XPCOMUtils.defineLazyGetter(this, "gABI", function aus_gABI() {
   catch (e) {
     LOG("gABI - XPCOM ABI unknown: updates are not possible.");
   }
-//@line 167 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 167 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/update/src/nsUpdateService.js.in"
   return abi;
 });
 
@@ -147,7 +147,7 @@ XPCOMUtils.defineLazyGetter(this, "gCanApplyUpdates", function aus_gCanApplyUpda
       updateTestFile.remove(false);
     updateTestFile.create(NORMAL_FILE_TYPE, FileUtils.PERMS_FILE);
     updateTestFile.remove(false);
-//@line 276 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 276 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/update/src/nsUpdateService.js.in"
   }
   catch (e) {
      LOG("gCanApplyUpdates - unable to apply updates. Exception: " + e);
@@ -200,7 +200,7 @@ function LOG(string) {
 }
 
 /**
-//@line 338 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 338 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/update/src/nsUpdateService.js.in"
  */
 function getPref(func, preference, defaultValue) {
   try {
@@ -230,10 +230,10 @@ function binaryToHex(input) {
 }
 
 /**
-//@line 373 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 373 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/update/src/nsUpdateService.js.in"
  */
 function getUpdateDirCreate(pathArray) {
-//@line 384 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 384 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/update/src/nsUpdateService.js.in"
   return FileUtils.getDir(KEY_APPDIR, pathArray, true);
 }
 
@@ -321,7 +321,7 @@ function writeStatusFile(dir, state) {
 }
 
 /**
-//@line 485 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 485 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/update/src/nsUpdateService.js.in"
  */
 function writeVersionFile(dir, version) {
   var versionFile = dir.clone();
@@ -1148,7 +1148,7 @@ UpdateService.prototype = {
     }
 
     /**
-//@line 1323 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 1323 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/update/src/nsUpdateService.js.in"
      */
 
     // Encode version since it could be a non-ascii string (bug 359093)
@@ -1177,7 +1177,7 @@ UpdateService.prototype = {
     }
 
     /**
-//@line 1367 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 1367 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/update/src/nsUpdateService.js.in"
      */
     if (update.type == "major") {
       LOG("Checker:_selectAndInstallUpdate - prompting because it is a major " +
@@ -1256,7 +1256,7 @@ UpdateService.prototype = {
 
     if (currentAddons.length > 0) {
       /**
-//@line 1463 "/builds/slave/mozilla-1.9.2-linux-xulrunner/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 1463 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/mozapps/update/src/nsUpdateService.js.in"
        */
       this._incompatAddonsCount = currentAddons.length;
       LOG("UpdateService:_checkAddonCompatibility - checking for " +

@@ -271,28 +271,6 @@ var XPCOMUtils = {
   },
 
   /**
-   * Helper which iterates over a nsISimpleEnumerator.
-   * @param e The nsISimpleEnumerator to iterate over.
-   * @param i The expected interface for each element.
-   */
-  IterSimpleEnumerator: function XPCU_IterSimpleEnumerator(e, i)
-  {
-    while (e.hasMoreElements())
-      yield e.getNext().QueryInterface(i);
-  },
-
-  /**
-   * Helper which iterates over a string enumerator.
-   * @param e The string enumerator (nsIUTF8StringEnumerator or
-   *          nsIStringEnumerator) over which to iterate.
-   */
-  IterStringEnumerator: function XPCU_IterStringEnumerator(e)
-  {
-    while (e.hasMore())
-      yield e.getNext();
-  },
-
-  /**
    * Convenience access to category manager
    */
   get categoryManager() {
@@ -333,4 +311,3 @@ function makeQI(interfaceNames) {
     throw Cr.NS_ERROR_NO_INTERFACE;
   };
 }
-
