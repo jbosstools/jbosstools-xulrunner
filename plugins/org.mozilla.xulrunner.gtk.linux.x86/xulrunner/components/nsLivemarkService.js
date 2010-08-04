@@ -228,6 +228,47 @@ G_ObserverServiceObserver.prototype.observe_ = function(subject, topic, data) {
     this.unregister();
 }
 
+//@line 136 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/components/url-classifier/content/moz/observer.js"
+function TEST_G_Observer() {
+  if (G_GDEBUG) {
+
+    var z = "observer UNITTEST";
+    G_debugService.enableZone(z);
+
+    G_Debug(z, "Starting");
+
+    var regularObserverRan = 0;
+    var observerServiceObserverRan = 0;
+
+    function regularObserver() {
+      regularObserverRan++;
+    };
+
+    function observerServiceObserver() {
+      observerServiceObserverRan++;
+    };
+
+    var service = Cc["@mozilla.org/observer-service;1"]
+                  .getService(Ci.nsIObserverService);
+    var topic = "google-observer-test";
+
+    var o1 = new G_ObserverWrapper(topic, regularObserver);
+    service.addObserver(o1, topic, false);
+
+    new G_ObserverServiceObserver(topic, 
+                                  observerServiceObserver, true /* once */);
+
+    // Notifications happen synchronously, so this is easy
+    service.notifyObservers(null, topic, null);
+    service.notifyObservers(null, topic, null);
+
+    G_Assert(z, regularObserverRan == 2, "Regular observer broken");
+    G_Assert(z, observerServiceObserverRan == 1, "ObsServObs broken");
+
+    service.removeObserver(o1, topic);
+    G_Debug(z, "PASSED");
+  }
+}
 //@line 36 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/components/url-classifier/content/moz/alarm.js"
 
 

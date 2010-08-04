@@ -203,13 +203,16 @@ function DO_LOG(aText) {
   consoleService.logStringMessage(aText);
 }
 
-//@line 258 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/components/search/nsSearchService.js"
-
+//@line 247 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/components/search/nsSearchService.js"
 /**
- * Otherwise, don't log at all by default. This can be overridden at startup
- * by the pref, see SearchService's _init method.
+ * In debug builds, use a live, pref-based (browser.search.log) LOG function
+ * to allow enabling/disabling without a restart.
  */
-var LOG = function(){};
+function PREF_LOG(aText) {
+  if (getBoolPref(BROWSER_SEARCH_PREF + "log", false))
+    DO_LOG(aText);
+}
+var LOG = PREF_LOG;
 
 //@line 266 "/home/eskimo/Projects/mozilla-1.9.2/toolkit/components/search/nsSearchService.js"
 
