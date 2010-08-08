@@ -165,7 +165,7 @@ nsFilePicker.prototype = {
     }
     if (filterMask & nsIFilePicker.filterImages) {
       this.appendFilter(bundle.GetStringFromName("imageTitle"),
-                   "*.jpg; *.jpeg; *.gif; *.png; *.bmp; *.ico"); // XXX 528755
+                   bundle.GetStringFromName("imageFilter"));
     }
     if (filterMask & nsIFilePicker.filterXML) {
       this.appendFilter(bundle.GetStringFromName("xmlTitle"),
@@ -197,7 +197,8 @@ nsFilePicker.prototype = {
         iid.equals(nsISupports))
       return this;
 
-    throw Components.results.NS_ERROR_NO_INTERFACE;
+    Components.returnCode = Components.results.NS_ERROR_NO_INTERFACE;
+    return null;
   },
 
   show: function() {
@@ -277,9 +278,9 @@ function (compMgr, fileSpec, location, type)
 
     compMgr.registerFactoryLocation(FILEPICKER_CID,
                                     "FilePicker JS Component",
-//@line 283 "/home/mareshkau/Desktop/mozilla-1.9.2/toolkit/components/filepicker/src/nsFilePicker.js.in"
+//@line 284 "/home/mareshkau/Desktop/mozilla-1.9.1/toolkit/components/filepicker/src/nsFilePicker.js.in"
                                     "",
-//@line 285 "/home/mareshkau/Desktop/mozilla-1.9.2/toolkit/components/filepicker/src/nsFilePicker.js.in"
+//@line 286 "/home/mareshkau/Desktop/mozilla-1.9.1/toolkit/components/filepicker/src/nsFilePicker.js.in"
                                     fileSpec,
                                     location,
                                     type);

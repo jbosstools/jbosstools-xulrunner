@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 /*
-//@line 38 "/home/mareshkau/Desktop/mozilla-1.9.2/toolkit/mozapps/extensions/src/nsAddonRepository.js"
+//@line 38 "/home/mareshkau/Desktop/mozilla-1.9.1/toolkit/mozapps/extensions/src/nsAddonRepository.js"
 */
 
 const Cc = Components.classes;

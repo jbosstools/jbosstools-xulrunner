@@ -86,6 +86,7 @@ TaggingService.prototype = {
 
   // nsISupports
   QueryInterface: XPCOMUtils.generateQI([Ci.nsITaggingService,
+                                         Ci.nsINavBookmarkObserver_MOZILLA_1_9_1_ADDITIONS,
                                          Ci.nsINavBookmarkObserver,
                                          Ci.nsIObserver]),
 
@@ -115,18 +116,13 @@ TaggingService.prototype = {
   /**
    * Creates a tag container under the tags-root with the given name.
    *
-   * @param aTagName
-   *        the name for the new tag.
-   * @returns the id of the new tag container.
+   * @param aName
+   *        the name for the new container.
+   * @returns the id of the new container.
    */
-  _createTag: function TS__createTag(aTagName) {
-    var newFolderId = this._bms.createFolder(this._bms.tagsFolder, aTagName,
-                                             this._bms.DEFAULT_INDEX);
-    // Add the folder to our local cache, so we can avoid doing this in the
-    // observer that would have to check itemType.
-    this._tagFolders[newFolderId] = aTagName;
-
-    return newFolderId;
+  _createTag: function TS__createTag(aName) {
+    return this._bms.createFolder(this._bms.tagsFolder, aName,
+                                  this._bms.DEFAULT_INDEX);
   },
 
   /**
@@ -210,10 +206,10 @@ TaggingService.prototype = {
   },
 
   /**
-   * Removes the tag container from the tags root if the given tag is empty.
+   * Removes the tag container from the tags-root if the given tag is empty.
    *
    * @param aTagId
-   *        the itemId of the tag element under the tags root
+   *        the item-id of the tag element under the tags root
    */
   _removeTagIfEmpty: function TS__removeTagIfEmpty(aTagId) {
     var result = this._getTagResult(aTagId);
@@ -225,7 +221,7 @@ TaggingService.prototype = {
     var cc = node.childCount;
     node.containerOpen = false;
     if (cc == 0)
-      this._bms.removeItem(node.itemId);
+      this._bms.removeFolder(node.itemId);
   },
 
   // nsITaggingService
@@ -396,22 +392,21 @@ TaggingService.prototype = {
   onEndUpdateBatch: function() {
     this._inBatch = false;
   },
-
-  onItemAdded: function(aItemId, aFolderId, aIndex, aItemType) {
-    // Nothing to do if this is not a tag.
-    if (aFolderId != this._bms.tagsFolder ||
-        aItemType != this._bms.TYPE_FOLDER)
-      return;
-
-    this._tagFolders[aItemId] = this._bms.getItemTitle(aItemId);
+  onItemAdded: function(aItemId, aFolderId, aIndex) {
+    if (aFolderId == this._bms.tagsFolder &&
+        this._bms.getItemType(aItemId) == this._bms.TYPE_FOLDER)
+      this._tagFolders[aItemId] = this._bms.getItemTitle(aItemId);
   },
-
-  onBeforeItemRemoved: function(aItemId, aItemType) {
-    if (aItemType == this._bms.TYPE_BOOKMARK)
+  onBeforeItemRemoved: function(aItemId) {
+    // Remember the bookmark's URI, because it will be gone by the time
+    // onItemRemoved() is called.  getBookmarkURI() will throw if the item is
+    // not a bookmark, which is fine.
+    try {
       this._itemsInRemoval[aItemId] = this._bms.getBookmarkURI(aItemId);
+    }
+    catch (e) {}
   },
-
-  onItemRemoved: function(aItemId, aFolderId, aIndex, aItemType) {
+  onItemRemoved: function(aItemId, aFolderId, aIndex) {
     var itemURI = this._itemsInRemoval[aItemId];
     delete this._itemsInRemoval[aItemId];
 
@@ -430,17 +425,12 @@ TaggingService.prototype = {
         this.untagURI(itemURI, tagIds);
     }
   },
-
-  onItemChanged: function(aItemId, aProperty, aIsAnnotationProperty, aNewValue,
-                          aLastModified, aItemType) {
-    if (aProperty == "title" && this._tagFolders[aItemId])
+  onItemChanged: function(aItemId, aProperty, aIsAnnotationProperty, aValue) {
+    if (this._tagFolders[aItemId])
       this._tagFolders[aItemId] = this._bms.getItemTitle(aItemId);
   },
-
   onItemVisited: function(aItemId, aVisitID, time) {},
-
-  onItemMoved: function(aItemId, aOldParent, aOldIndex, aNewParent, aNewIndex,
-                        aItemType) {
+  onItemMoved: function(aItemId, aOldParent, aOldIndex, aNewParent, aNewIndex) {
     if (this._tagFolders[aItemId] && this._bms.tagFolder == aOldParent &&
         this._bms.tagFolder != aNewParent)
       delete this._tagFolders[aItemId];

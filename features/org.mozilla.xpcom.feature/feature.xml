@@ -2,7 +2,7 @@
 <feature
       id="org.mozilla.xpcom.feature"
       label="XPCOM Feature"
-      version="1.9.2"
+      version="1.9.1.2a"
       provider-name="JBoss by Red Hat">
 
    <description>

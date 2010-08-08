@@ -1,5 +1,5 @@
 /* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
-//@line 41 "/home/eskimo/Projects/mozilla-1.9.2/xulrunner/setup/nsXULAppInstall.js"
+//@line 41 "/builds/moz2_slave/mozilla-1.9.1-linux-xulrunner/build/xulrunner/setup/nsXULAppInstall.js"
 
 const nsIFile             = Components.interfaces.nsIFile;
 const nsIINIParser        = Components.interfaces.nsIINIParser;
@@ -175,7 +175,7 @@ const AppInstall = {
         iid.equals(nsISupports))
       return this;
 
-    throw Components.results.NS_ERROR_NO_INTERFACE;
+    throw Components.result.NS_ERROR_NO_INTERFACE;
   },
 
   /* nsIXULAppInstall */
@@ -193,13 +193,13 @@ const AppInstall = {
     catch (e) { }
 
     if (aDirectory == null) {
-//@line 244 "/home/eskimo/Projects/mozilla-1.9.2/xulrunner/setup/nsXULAppInstall.js"
+//@line 244 "/builds/moz2_slave/mozilla-1.9.1-linux-xulrunner/build/xulrunner/setup/nsXULAppInstall.js"
       aDirectory = Components.classes["@mozilla.org/file/local;1"].
         createInstance(nsILocalFile);
       aDirectory.initWithPath("/usr/lib");
       if (vendor)
         aDirectory.append(vendor.toLowerCase());
-//@line 251 "/home/eskimo/Projects/mozilla-1.9.2/xulrunner/setup/nsXULAppInstall.js"
+//@line 251 "/builds/moz2_slave/mozilla-1.9.1-linux-xulrunner/build/xulrunner/setup/nsXULAppInstall.js"
     }
     else {
       aDirectory = aDirectory.clone();
@@ -210,9 +210,9 @@ const AppInstall = {
     }
 
     if (aLeafName == "") {
-//@line 267 "/home/eskimo/Projects/mozilla-1.9.2/xulrunner/setup/nsXULAppInstall.js"
+//@line 267 "/builds/moz2_slave/mozilla-1.9.1-linux-xulrunner/build/xulrunner/setup/nsXULAppInstall.js"
       aLeafName = appName.toLowerCase();
-//@line 270 "/home/eskimo/Projects/mozilla-1.9.2/xulrunner/setup/nsXULAppInstall.js"
+//@line 270 "/builds/moz2_slave/mozilla-1.9.1-linux-xulrunner/build/xulrunner/setup/nsXULAppInstall.js"
     }
 
     aDirectory.append(aLeafName);
@@ -220,14 +220,14 @@ const AppInstall = {
       aDirectory.create(nsIFile.DIRECTORY_TYPE, 0755);
     }
 
-//@line 341 "/home/eskimo/Projects/mozilla-1.9.2/xulrunner/setup/nsXULAppInstall.js"
+//@line 341 "/builds/moz2_slave/mozilla-1.9.1-linux-xulrunner/build/xulrunner/setup/nsXULAppInstall.js"
     extractor.copyTo(aDirectory);
 
-    var xulrunnerBinary = getDirectoryKey("GreD");
+    var xulrunnerBinary = getDirectoryKey("XCurProcD");
     xulrunnerBinary.append("xulrunner-stub");
 
     xulrunnerBinary.copyTo(aDirectory, appName.toLowerCase() + "");
-//@line 348 "/home/eskimo/Projects/mozilla-1.9.2/xulrunner/setup/nsXULAppInstall.js"
+//@line 348 "/builds/moz2_slave/mozilla-1.9.1-linux-xulrunner/build/xulrunner/setup/nsXULAppInstall.js"
   }
 };
 

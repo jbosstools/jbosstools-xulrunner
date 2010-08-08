@@ -1,4 +1,4 @@
-//@line 44 "/home/mareshkau/Desktop/mozilla-1.9.2/toolkit/content/debug.js"
+//@line 44 "/home/mareshkau/Desktop/mozilla-1.9.1/toolkit/content/debug.js"
 
 var EXPORTED_SYMBOLS = ["NS_ASSERT"];
 

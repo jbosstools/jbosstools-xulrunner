@@ -1,4 +1,4 @@
-//@line 38 "/home/mareshkau/Desktop/mozilla-1.9.2/toolkit/components/nsDefaultCLH.js"
+//@line 38 "/home/mareshkau/Desktop/mozilla-1.9.1/toolkit/components/nsDefaultCLH.js"
 
 const nsISupports              = Components.interfaces.nsISupports;
 

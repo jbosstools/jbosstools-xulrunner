@@ -51,24 +51,8 @@ const Cu = Components.utils;
 const kQuitApplication = "quit-application";
 const kSyncFinished = "places-sync-finished";
 
-const kSyncPrefName = "places.syncDBTableIntervalInSecs";
+const kSyncPrefName = "syncDBTableIntervalInSecs";
 const kDefaultSyncInterval = 120;
-const kExpireDaysPrefName = "browser.history_expire_days";
-const kDefaultExpireDays = 90;
-
-// The number of milliseconds in a day.
-const kMSPerDay = 86400000;
-
-// The max number of entries we will flush out when we expire.
-const kMaxExpire = 24;
-
-// Query Constants.  These describe the queries we use.
-const kQuerySyncPlacesId = 0;
-const kQuerySyncHistoryVisitsId = 1;
-const kQuerySelectExpireVisitsId = 2;
-const kQueryExpireVisitsId = 3;
-const kQuerySelectExpireHistoryOrphansId = 4;
-const kQueryExpireHistoryOrphansId = 5;
 
 ////////////////////////////////////////////////////////////////////////////////
 //// nsPlacesDBFlush class
@@ -76,43 +60,33 @@ const kQueryExpireHistoryOrphansId = 5;
 function nsPlacesDBFlush()
 {
   this._prefs = Cc["@mozilla.org/preferences-service;1"].
-                getService(Ci.nsIPrefBranch);
+                getService(Ci.nsIPrefService).
+                getBranch("places.");
 
   // Get our sync interval
   try {
-    // We want to silently fail since getIntPref throws if it does not exist,
-    // and use a default to fallback to.
+    // We want to silently fail if the preference does not exist, and use a
+    // default to fallback to.
     this._syncInterval = this._prefs.getIntPref(kSyncPrefName);
     if (this._syncInterval <= 0)
       this._syncInterval = kDefaultSyncInterval;
   }
   catch (e) {
-    // The preference did not exist, so use the default.
+    // The preference did not exist, so default to two minutes.
     this._syncInterval = kDefaultSyncInterval;
   }
 
-  // Get our maximum allowable age of visits in days.
-  try {
-    // We want to silently fail since getIntPref throws if it does not exist,
-    // and use a default to fallback to.
-    this._expireDays = this._prefs.getIntPref(kExpireDaysPrefName);
-    if (this._expireDays <= 0)
-      this._expireDays = kDefaultExpireDays;
-  }
-  catch (e) {
-    // The preference did not exist, so use the default.
-    this._expireDays = kDefaultExpireDays;
-  }
-
   // Register observers
+  this._bs = Cc["@mozilla.org/browser/nav-bookmarks-service;1"].
+             getService(Ci.nsINavBookmarksService);
+  this._bs.addObserver(this, false);
+
   this._os = Cc["@mozilla.org/observer-service;1"].
              getService(Ci.nsIObserverService);
   this._os.addObserver(this, kQuitApplication, false);
 
-  let (pb2 = this._prefs.QueryInterface(Ci.nsIPrefBranch2)) {
-    pb2.addObserver(kSyncPrefName, this, false);
-    pb2.addObserver(kExpireDaysPrefName, this, false);
-  }
+  this._prefs.QueryInterface(Ci.nsIPrefBranch2)
+             .addObserver("", this, false);
 
   // Create our timer to update everything
   this._timer = this._newTimer();
@@ -127,23 +101,6 @@ function nsPlacesDBFlush()
                       DBConnection;
   });
 
-  this.__defineGetter__("_ios", function() {
-    delete this._ios;
-    return this._ios = Cc["@mozilla.org/network/io-service;1"].
-                       getService(Ci.nsIIOService);
-  });
-
-  this.__defineGetter__("_hsn", function() {
-    delete this._hsn;
-    return this._hsn = Cc["@mozilla.org/browser/nav-history-service;1"].
-                       getService(Ci.nsPIPlacesHistoryListenersNotifier);
-  });
-
-  this.__defineGetter__("_bs", function() {
-    delete this._bs;
-    return this._bs = Cc["@mozilla.org/browser/nav-bookmarks-service;1"].
-                      getService(Ci.nsINavBookmarksService);
-  });
 }
 
 nsPlacesDBFlush.prototype = {
@@ -153,11 +110,9 @@ nsPlacesDBFlush.prototype = {
   observe: function DBFlush_observe(aSubject, aTopic, aData)
   {
     if (aTopic == kQuitApplication) {
+      this._bs.removeObserver(this);
       this._os.removeObserver(this, kQuitApplication);
-      let (pb2 = this._prefs.QueryInterface(Ci.nsIPrefBranch2)) {
-        pb2.removeObserver(kSyncPrefName, this);
-        pb2.removeObserver(kExpireDaysPrefName, this);
-      }
+      this._prefs.QueryInterface(Ci.nsIPrefBranch2).removeObserver("", this);
       this._timer.cancel();
       this._timer = null;
       // Other components could still make changes to history at this point,
@@ -172,7 +127,7 @@ nsPlacesDBFlush.prototype = {
           let pip = Cc["@mozilla.org/browser/nav-history-service;1"].
                     getService(Ci.nsPIPlacesDatabase);
           pip.commitPendingChanges();
-          this._self._flushWithQueries([kQuerySyncPlacesId, kQuerySyncHistoryVisitsId]);
+          this._self._syncTables(["places", "historyvisits"]);
           // Close the database connection, this was the last sync and we can't
           // ensure database coherence from now on.
           pip.finalizeInternalStatements();
@@ -184,7 +139,7 @@ nsPlacesDBFlush.prototype = {
     }
     else if (aTopic == "nsPref:changed" && aData == kSyncPrefName) {
       // Get the new pref value, and then update our timer
-      this._syncInterval = this._prefs.getIntPref(kSyncPrefName);
+      this._syncInterval = aSubject.getIntPref(kSyncPrefName);
       if (this._syncInterval <= 0)
         this._syncInterval = kDefaultSyncInterval;
 
@@ -195,12 +150,6 @@ nsPlacesDBFlush.prototype = {
 
       this._timer.cancel();
       this._timer = this._newTimer();
-    }
-    else if (aTopic == "nsPref:changed" && aData == kExpireDaysPrefName) {
-      // Get the new pref and store it.
-      this._expireDays = this._prefs.getIntPref(kExpireDaysPrefName);
-      if (this._expireDays <= 0)
-        this._expireDays = kDefaultExpireDays;
     }
   },
 
@@ -224,87 +173,36 @@ nsPlacesDBFlush.prototype = {
     this._timer = this._newTimer();
 
     // We need to sync now
-    this._flushWithQueries([kQuerySyncPlacesId, kQuerySyncHistoryVisitsId]);
+    this._syncTables(["places", "historyvisits"]);
   },
 
-  onItemAdded: function(aItemId, aParentId, aIndex, aItemType)
+  onItemAdded: function(aItemId, aParentId, aIndex)
   {
-    // Sync only if we added a TYPE_BOOKMARK item.  Note, we want to run the
-    // least amount of queries as possible here for performance reasons.
-    if (!this._inBatchMode && aItemType == this._bs.TYPE_BOOKMARK)
-      this._flushWithQueries([kQuerySyncPlacesId]);
+    // Sync only if we added a TYPE_BOOKMARK item
+    if (!this._inBatchMode &&
+        this._bs.getItemType(aItemId) == this._bs.TYPE_BOOKMARK)
+      this._syncTables(["places"]);
   },
 
   onItemChanged: function DBFlush_onItemChanged(aItemId, aProperty,
-                                                aIsAnnotationProperty,
-                                                aNewValue, aLastModified,
-                                                aItemType)
+                                                         aIsAnnotationProperty,
+                                                         aValue)
   {
     if (!this._inBatchMode && aProperty == "uri")
-      this._flushWithQueries([kQuerySyncPlacesId]);
+      this._syncTables(["places"]);
   },
 
-  onBeforeItemRemoved: function() { },
   onItemRemoved: function() { },
   onItemVisited: function() { },
   onItemMoved: function() { },
 
   //////////////////////////////////////////////////////////////////////////////
-  //// nsINavHistoryObserver
-
-  // We currently only use the history observer to know when the history service
-  // is activated.  At that point, we actually get initialized, and our timer
-  // to sync history is added.
-
-  // These methods share the name of the ones on nsINavBookmarkObserver, so
-  // the implementations can be found above.
-  //onBeginUpdateBatch: function() { },
-  //onEndUpdateBatch: function() { },
-  onVisit: function(aURI, aVisitID, aTime, aSessionID, aReferringID, aTransitionType) { },
-  onTitleChanged: function(aURI, aPageTitle) { },
-  onBeforeDeleteURI: function(aURI) { },
-  onDeleteURI: function(aURI) { },
-  onClearHistory: function() { },
-  onPageChanged: function(aURI, aWhat, aValue) { },
-  onPageExpired: function(aURI, aVisitTime, aWholeEntry) { },
-
-  //////////////////////////////////////////////////////////////////////////////
   //// nsITimerCallback
 
-  notify: function DBFlush_timerCallback()
-  {
-    let queries = [
-      kQuerySelectExpireVisitsId,
-      kQueryExpireVisitsId,
-      kQuerySelectExpireHistoryOrphansId,
-      kQueryExpireHistoryOrphansId,
-      kQuerySyncPlacesId,
-      kQuerySyncHistoryVisitsId,
-    ];
-    this._flushWithQueries(queries);
-  },
+  notify: function() this._syncTables(["places", "historyvisits"]),
 
   //////////////////////////////////////////////////////////////////////////////
   //// mozIStorageStatementCallback
-
-  handleResult: function DBFlush_handleResult(aResultSet)
-  {
-    // The only results we'll ever get back is for notifying about expiration.
-    if (!this._expiredResults)
-      this._expiredResults = [];
-
-    let row;
-    while (row = aResultSet.getNextRow()) {
-      if (row.getResultByName("hidden"))
-        continue;
-
-      this._expiredResults.push({
-        uri: this._ios.newURI(row.getResultByName("url"), null, null),
-        visitDate: row.getResultByName("visit_date"),
-        wholeEntry: (row.getResultByName("whole_entry") == 1)
-      });
-    }
-  },
 
   handleError: function DBFlush_handleError(aError)
   {
@@ -315,18 +213,6 @@ nsPlacesDBFlush.prototype = {
   handleCompletion: function DBFlush_handleCompletion(aReason)
   {
     if (aReason == Ci.mozIStorageStatementCallback.REASON_FINISHED) {
-      // Dispatch to history that we've finished expiring if we have results.
-      if (this._expiredResults) {
-        while (this._expiredResults.length) {
-          let visit = this._expiredResults.shift();
-          this._hsn.notifyOnPageExpired(visit.uri, visit.visitDate,
-                                        visit.wholeEntry);
-        }
-
-        // And reset it...
-        delete this._expiredResults;
-      }
-
       // Dispatch a notification that sync has finished.
       this._os.notifyObservers(null, kSyncFinished, null);
     }
@@ -337,20 +223,19 @@ nsPlacesDBFlush.prototype = {
   _syncInterval: kDefaultSyncInterval,
 
   /**
-   * Execute async statements to flush tables with the specified queries.
-   *
-   * @param aQueryNames
-   *        The names of the queries to use with this flush.
+   * Execute async statements to sync temporary places table.
+   * @param aTableNames
+   *        array of table names that should be synced, as moz_{TableName}_temp.
    */
-  _flushWithQueries: function DBFlush_flushWithQueries(aQueryNames)
+  _syncTables: function DBFlush_syncTables(aTableNames)
   {
     // No need to do extra work if we are in batch mode
     if (this._inBatchMode)
       return;
 
     let statements = [];
-    for (let i = 0; i < aQueryNames.length; i++)
-      statements.push(this._getQuery(aQueryNames[i]));
+    for (let i = 0; i < aTableNames.length; i++)
+      statements.push(this._getSyncTableStatement(aTableNames[i]));
 
     // Execute sync statements async in a transaction
     this._db.executeAsync(statements, statements.length, this);
@@ -373,134 +258,42 @@ nsPlacesDBFlush.prototype = {
    * into the permanent one.
    * Most of the work is done through triggers defined in nsPlacesTriggers.h,
    * they sync back to disk, then delete the data in the temporary table.
-   *
-   * @param aQueryType
-   *        Type of the query to build statement for.
+   * @param aTableName
+   *        name of the table to build statement for, as moz_{TableName}_temp.
    */
-  _cachedStatements: [],
-  _getQuery: function DBFlush_getQuery(aQueryType)
+  _cachedStatements: {},
+  _getSyncTableStatement: function DBFlush_getSyncTableStatement(aTableName)
   {
     // Statement creating can be expensive, so always cache if we can.
-    if (aQueryType in this._cachedStatements) {
-      let stmt = this._cachedStatements[aQueryType];
+    if (aTableName in this._cachedStatements)
+      return this._cachedStatements[aTableName];
 
-      // Bind the appropriate parameters.
-      let params = stmt.params;
-      switch (aQueryType) {
-        case kQuerySyncHistoryVisitsId:
-        case kQuerySyncPlacesId:
-          params.transition_type = Ci.nsINavHistoryService.TRANSITION_EMBED;
-          break;
-        case kQuerySelectExpireVisitsId:
-        case kQueryExpireVisitsId:
-          params.visit_date = (Date.now() - (this._expireDays * kMSPerDay)) * 1000;
-          params.max_expire = kMaxExpire;
-          break;
-        case kQuerySelectExpireHistoryOrphansId:
-        case kQueryExpireHistoryOrphansId:
-          params.max_expire = kMaxExpire;
-          break;
-      }
-
-      return stmt;
-    }
-
-    switch(aQueryType) {
-      case kQuerySyncHistoryVisitsId:
+    // Delete all the data in the temp table.
+    // We have triggers setup that ensure that the data is transferred over
+    // upon deletion.
+    let condition = "";
+    switch(aTableName) {
+      case "historyvisits":
         // For history table we want to leave embed visits in memory, since
         // those are expired with current session, so we are filtering them out.
-        this._cachedStatements[aQueryType] = this._db.createStatement(
-          "DELETE FROM moz_historyvisits_temp " +
-          "WHERE visit_type <> :transition_type"
-        );
+        condition = "WHERE visit_type <> " + Ci.nsINavHistoryService.TRANSITION_EMBED;
         break;
-
-      case kQuerySyncPlacesId:
+      case "places":
         // For places table we want to leave places associated with embed visits
         // in memory, they usually have hidden = 1 and at least an embed visit
         // in historyvisits_temp table.
-        this._cachedStatements[aQueryType] = this._db.createStatement(
-          "DELETE FROM moz_places_temp " +
-          "WHERE id IN ( " +
-            "SELECT id FROM moz_places_temp h " +
-            "WHERE h.hidden <> 1 OR NOT EXISTS ( " +
-              "SELECT id FROM moz_historyvisits_temp " +
-              "WHERE place_id = h.id AND visit_type = :transition_type " +
-              "LIMIT 1 " +
-            ") " +
-          ")"
-        );
+        condition = "WHERE id IN (SELECT id FROM moz_places_temp h " +
+                                  "WHERE h.hidden <> 1 OR NOT EXISTS ( " +
+                                    "SELECT id FROM moz_historyvisits_temp " +
+                                    "WHERE place_id = h.id AND visit_type = " +
+                                    Ci.nsINavHistoryService.TRANSITION_EMBED +
+                                    " LIMIT 1) " +
+                                  ")";
         break;
-
-      case kQuerySelectExpireVisitsId:
-        // Determine which entries will be flushed out from moz_historyvisits
-        // when kQueryExpireVisitsId runs.
-        this._cachedStatements[aQueryType] = this._db.createStatement(
-          "SELECT h.url, v.visit_date, h.hidden, 0 AS whole_entry " +
-          "FROM moz_places h " +
-          "JOIN moz_historyvisits v ON h.id = v.place_id " +
-          "WHERE v.visit_date < :visit_date " +
-          "ORDER BY v.visit_date ASC " +
-          "LIMIT :max_expire"
-        );
-        break;
-
-      case kQueryExpireVisitsId:
-        // Expire entries from moz_historyvisits.
-        this._cachedStatements[aQueryType] = this._db.createStatement(
-          "DELETE FROM moz_historyvisits " +
-          "WHERE id IN ( " +
-            "SELECT id " +
-            "FROM moz_historyvisits " +
-            "WHERE visit_date < :visit_date " +
-            "ORDER BY visit_date ASC " +
-            "LIMIT :max_expire " +
-          ")"
-        );
-        break;
-
-      case kQuerySelectExpireHistoryOrphansId:
-        // Determine which entries will be flushed out from moz_places
-        // when kQueryExpireHistoryOrphansId runs.
-        this._cachedStatements[aQueryType] = this._db.createStatement(
-          "SELECT h.url, h.last_visit_date AS visit_date, h.hidden, " +
-                 "1 as whole_entry FROM moz_places h " +
-          "LEFT JOIN moz_historyvisits v ON h.id = v.place_id " +
-          "LEFT JOIN moz_historyvisits_temp v_t ON h.id = v_t.place_id " +
-          "LEFT JOIN moz_bookmarks b ON h.id = b.fk " +
-          "WHERE v.id IS NULL " +
-            "AND v_t.id IS NULL " +
-            "AND b.id IS NULL " +
-            "AND SUBSTR(h.url, 1, 6) <> 'place:' " +
-          "LIMIT :max_expire"
-        );
-        break;
-
-      case kQueryExpireHistoryOrphansId:
-        // Flush out entries from moz_historyvisits.
-        this._cachedStatements[aQueryType] = this._db.createStatement(
-          "DELETE FROM moz_places_view " +
-          "WHERE id IN ( " +
-            "SELECT h.id FROM moz_places h " +
-            "LEFT JOIN moz_historyvisits v ON h.id = v.place_id " +
-            "LEFT JOIN moz_historyvisits_temp v_t ON h.id = v_t.place_id " +
-            "LEFT JOIN moz_bookmarks b ON h.id = b.fk " +
-            "WHERE v.id IS NULL " +
-              "AND v_t.id IS NULL " +
-              "AND b.id IS NULL " +
-              "AND SUBSTR(h.url, 1, 6) <> 'place:' " +
-            "LIMIT :max_expire" +
-          ")"
-        );
-        break;
-
-      default:
-        throw "Unexpected statement!";
     }
 
-    // We only bind our own parameters when we have a cached statement, so we
-    // call ourself since we now have a cached statement.
-    return this._getQuery(aQueryType);
+    let sql = "DELETE FROM moz_" + aTableName + "_temp " + condition;
+    return this._cachedStatements[aTableName] = this._db.createStatement(sql);
   },
 
   /**
@@ -522,18 +315,13 @@ nsPlacesDBFlush.prototype = {
   classDescription: "Used to synchronize the temporary and permanent tables of Places",
   classID: Components.ID("c1751cfc-e8f1-4ade-b0bb-f74edfb8ef6a"),
   contractID: "@mozilla.org/places/sync;1",
-
-  // Registering in these categories makes us get initialized when either of
-  // those listeners would be notified.
-  _xpcom_categories: [
-    { category: "bookmark-observers" },
-    { category: "history-observers" },
-  ],
+  _xpcom_categories: [{
+    category: "profile-after-change",
+  }],
 
   QueryInterface: XPCOMUtils.generateQI([
     Ci.nsIObserver,
     Ci.nsINavBookmarkObserver,
-    Ci.nsINavHistoryObserver,
     Ci.nsITimerCallback,
     Ci.mozIStorageStatementCallback,
   ])
