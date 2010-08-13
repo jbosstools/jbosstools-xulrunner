@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+  <feature url="features/org.mozilla.xulrunner.feature_0.0.0.jar" id="org.mozilla.xulrunner.feature" version="0.0.0">
+    <category name="XulRunner"/>
+  </feature>
+  <feature url="features/org.mozilla.xpcom.feature_0.0.0.jar" id="org.mozilla.xpcom.feature" version="0.0.0">
+    <category name="XulRunner"/>
+  </feature>
+  <category-def name="XulRunner" label="XulRunner support for JBoss Tools">
+    <description>XulRunner support for JBoss Tools</description>
+  </category-def>
+</site>

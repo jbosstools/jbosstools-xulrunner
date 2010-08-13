@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.mozilla.xpcom.feature"
+      label="XPCOM Feature"
+      version="1.9.1.2a"
+      provider-name="JBoss by Red Hat">
+
+   <description>
+      XPCOM Feature
+   </description>
+
+   <copyright>
+      (c) 2010 JBoss by Red Hat
+   </copyright>
+
+   <license>
+      EPL, what else?
+   </license>
+
+   <plugin
+         id="org.mozilla.xpcom"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
