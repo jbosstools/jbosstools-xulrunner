@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Mozilla XPCOM Eclipse plugin
+Bundle-SymbolicName: org.mozilla.xpcom;singleton:=true
+Bundle-Version: 1.9.1.2a
+Bundle-ClassPath: MozillaGlue.jar,
+ MozillaInterfaces.jar
+Export-Package: org.mozilla.interfaces,
+ org.mozilla.xpcom
+Bundle-Vendor: mozilla.org
+Eclipse-BuddyPolicy: registered
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+
