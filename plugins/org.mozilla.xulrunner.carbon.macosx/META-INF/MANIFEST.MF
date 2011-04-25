@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Mozilla Xulrunner
-Bundle-SymbolicName: org.mozilla.xulrunner.carbon.macosx;singleton:=true
-Bundle-Version: 1.9.1.2a
-Bundle-Vendor: mozilla.org
-Eclipse-PlatformFilter: (& (osgi.ws=carbon) (osgi.os=macosx) (|(osgi.arch=x86)(osgi.arch=ppc)))
