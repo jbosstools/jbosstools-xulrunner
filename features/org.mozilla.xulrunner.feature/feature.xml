@@ -5,7 +5,7 @@
       version="1.9.216.qualifier"
       provider-name="JBoss by Red Hat"
       os="linux,macosx,win32"
-      ws="carbon,cocoa,gtk,win32"
+      ws="cocoa,gtk,win32"
       arch="x86,x86_64">
 
    <description>
@@ -57,14 +57,6 @@
          id="org.mozilla.xulrunner.cocoa.macosx"
          os="macosx"
          ws="cocoa"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
-         id="org.mozilla.xulrunner.carbon.macosx"
-         os="macosx"
-         ws="carbon"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
