@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Mozilla Xulrunner
 Bundle-SymbolicName: org.mozilla.xulrunner.gtk.linux.x86;singleton:=tr
  ue
-Bundle-Version: 1.9.1.2
+Bundle-Version: 1.9.1.2b
 Bundle-Vendor: mozilla.org
 Eclipse-PlatformFilter: (& (osgi.ws=gtk)(osgi.os=linux)(osgi.arch=x86))
 
