@@ -8,6 +8,6 @@
 	</parent>
 	<groupId>org.jboss.tools.xulrunner.features</groupId>
 	<artifactId>org.mozilla.xulrunner.feature</artifactId> 
-	<version>1.9.216-SNAPSHOT</version>
+	<version>1.9.218-SNAPSHOT</version>
 	<packaging>eclipse-feature</packaging>
 </project>
