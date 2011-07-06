@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 /*
-//@line 44 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 44 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
 */
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 Components.utils.import("resource://gre/modules/FileUtils.jsm");
@@ -40,7 +40,7 @@ const CATEGORY_UPDATE_TIMER               = "update-timer";
 
 const KEY_APPDIR          = "XCurProcD";
 const KEY_GRED            = "GreD";
-//@line 88 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 88 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
 
 const DIR_UPDATES         = "updates";
 const FILE_UPDATE_STATUS  = "update.status";
@@ -116,7 +116,7 @@ XPCOMUtils.defineLazyGetter(this, "gABI", function aus_gABI() {
   catch (e) {
     LOG("gABI - XPCOM ABI unknown: updates are not possible.");
   }
-//@line 177 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 177 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
   return abi;
 });
 
@@ -152,7 +152,7 @@ XPCOMUtils.defineLazyGetter(this, "gCanApplyUpdates", function aus_gCanApplyUpda
       updateTestFile.remove(false);
     updateTestFile.create(NORMAL_FILE_TYPE, FileUtils.PERMS_FILE);
     updateTestFile.remove(false);
-//@line 286 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 286 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
   }
   catch (e) {
      LOG("gCanApplyUpdates - unable to apply updates. Exception: " + e);
@@ -205,7 +205,7 @@ function LOG(string) {
 }
 
 /**
-//@line 348 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 348 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
  */
 function getPref(func, preference, defaultValue) {
   try {
@@ -235,10 +235,10 @@ function binaryToHex(input) {
 }
 
 /**
-//@line 383 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 383 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
  */
 function getUpdateDirCreate(pathArray) {
-//@line 394 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 394 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
   return FileUtils.getDir(KEY_APPDIR, pathArray, true);
 }
 
@@ -326,7 +326,7 @@ function writeStatusFile(dir, state) {
 }
 
 /**
-//@line 495 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 495 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
  */
 function writeVersionFile(dir, version) {
   var versionFile = dir.clone();
@@ -1149,7 +1149,7 @@ UpdateService.prototype = {
     }
 
     /**
-//@line 1329 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 1329 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
      */
 
     var neverPrefName = PREF_APP_UPDATE_NEVER_BRANCH + update.extensionVersion;
@@ -1176,7 +1176,7 @@ UpdateService.prototype = {
     }
 
     /**
-//@line 1371 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 1371 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
      */
     if (update.type == "major") {
       LOG("Checker:_selectAndInstallUpdate - prompting because it is a major " +
@@ -1252,7 +1252,7 @@ UpdateService.prototype = {
 
     if (currentAddons.length > 0) {
       /**
-//@line 1464 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateService.js.in"
+//@line 1464 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateService.js.in"
        */
       this._incompatAddonsCount = currentAddons.length;
       LOG("UpdateService:_checkAddonCompatibility - checking for " +
@@ -1464,8 +1464,18 @@ function UpdateManager() {
   // Ensure the Active Update file is loaded
   var updates = this._loadXMLFileIntoArray(getUpdateFile(
                   [FILE_UPDATE_ACTIVE]));
-  if (updates.length > 0)
-    this._activeUpdate = updates[0];
+  if (updates.length > 0) {
+    // Under some edgecases such as Windows system restore the active-update.xml
+    // will contain a pending update without the status file which will return
+    // STATE_NONE. To recover from this situation clean the updates dir and
+    // rewrite the active-update.xml file without the broken update.
+    if (readStatusFile(getUpdatesDir()) == STATE_NONE) {
+      cleanUpUpdatesDir();
+      this._writeUpdatesToXMLFile([], getUpdateFile([FILE_UPDATE_ACTIVE]));
+    }
+    else
+      this._activeUpdate = updates[0];
+  }
 }
 UpdateManager.prototype = {
   /**

@@ -1,5 +1,5 @@
 /* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
-//@line 41 "/home/yradtsevich/jboss/192src-copy/xulrunner/setup/nsXULAppInstall.js"
+//@line 41 "/builds/slave/m-192-lnx64-xr/build/xulrunner/setup/nsXULAppInstall.js"
 
 const nsIFile             = Components.interfaces.nsIFile;
 const nsIINIParser        = Components.interfaces.nsIINIParser;
@@ -193,13 +193,13 @@ const AppInstall = {
     catch (e) { }
 
     if (aDirectory == null) {
-//@line 244 "/home/yradtsevich/jboss/192src-copy/xulrunner/setup/nsXULAppInstall.js"
+//@line 244 "/builds/slave/m-192-lnx64-xr/build/xulrunner/setup/nsXULAppInstall.js"
       aDirectory = Components.classes["@mozilla.org/file/local;1"].
         createInstance(nsILocalFile);
       aDirectory.initWithPath("/usr/lib");
       if (vendor)
         aDirectory.append(vendor.toLowerCase());
-//@line 251 "/home/yradtsevich/jboss/192src-copy/xulrunner/setup/nsXULAppInstall.js"
+//@line 251 "/builds/slave/m-192-lnx64-xr/build/xulrunner/setup/nsXULAppInstall.js"
     }
     else {
       aDirectory = aDirectory.clone();
@@ -210,9 +210,9 @@ const AppInstall = {
     }
 
     if (aLeafName == "") {
-//@line 267 "/home/yradtsevich/jboss/192src-copy/xulrunner/setup/nsXULAppInstall.js"
+//@line 267 "/builds/slave/m-192-lnx64-xr/build/xulrunner/setup/nsXULAppInstall.js"
       aLeafName = appName.toLowerCase();
-//@line 270 "/home/yradtsevich/jboss/192src-copy/xulrunner/setup/nsXULAppInstall.js"
+//@line 270 "/builds/slave/m-192-lnx64-xr/build/xulrunner/setup/nsXULAppInstall.js"
     }
 
     aDirectory.append(aLeafName);
@@ -220,14 +220,14 @@ const AppInstall = {
       aDirectory.create(nsIFile.DIRECTORY_TYPE, 0755);
     }
 
-//@line 341 "/home/yradtsevich/jboss/192src-copy/xulrunner/setup/nsXULAppInstall.js"
+//@line 341 "/builds/slave/m-192-lnx64-xr/build/xulrunner/setup/nsXULAppInstall.js"
     extractor.copyTo(aDirectory);
 
     var xulrunnerBinary = getDirectoryKey("GreD");
     xulrunnerBinary.append("xulrunner-stub");
 
     xulrunnerBinary.copyTo(aDirectory, appName.toLowerCase() + "");
-//@line 348 "/home/yradtsevich/jboss/192src-copy/xulrunner/setup/nsXULAppInstall.js"
+//@line 348 "/builds/slave/m-192-lnx64-xr/build/xulrunner/setup/nsXULAppInstall.js"
   }
 };
 

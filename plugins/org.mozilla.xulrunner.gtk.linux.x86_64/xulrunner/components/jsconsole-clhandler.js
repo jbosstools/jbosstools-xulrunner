@@ -1,4 +1,4 @@
-//@line 41 "/home/yradtsevich/jboss/192src-copy/toolkit/components/console/jsconsole-clhandler.js"
+//@line 41 "/builds/slave/m-192-lnx64-xr/build/toolkit/components/console/jsconsole-clhandler.js"
 const Cc = Components.classes;
 const Ci = Components.interfaces;
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");

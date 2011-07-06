@@ -68,10 +68,10 @@ const RESTORE_SUCCESS_NSIOBSERVER_TOPIC = "bookmarks-restore-success";
 const RESTORE_FAILED_NSIOBSERVER_TOPIC = "bookmarks-restore-failed";
 const RESTORE_NSIOBSERVER_DATA = "json";
 
-//@line 76 "/home/yradtsevich/jboss/192src-copy/toolkit/components/places/src/utils.js"
+//@line 76 "/builds/slave/m-192-lnx64-xr/build/toolkit/components/places/src/utils.js"
 // On other platforms, the transferable system converts "\r\n" to "\n".
 const NEWLINE = "\r\n";
-//@line 79 "/home/yradtsevich/jboss/192src-copy/toolkit/components/places/src/utils.js"
+//@line 79 "/builds/slave/m-192-lnx64-xr/build/toolkit/components/places/src/utils.js"
 
 function QI_node(aNode, aIID) {
   var result = null;

@@ -2,7 +2,7 @@
 <feature
       id="org.mozilla.xulrunner.feature"
       label="XulRunner Feature"
-      version="1.9.216.qualifier"
+      version="1.9.218.qualifier"
       provider-name="JBoss by Red Hat"
       os="linux,macosx,win32"
       ws="cocoa,gtk,win32"

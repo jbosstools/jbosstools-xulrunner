@@ -1,4 +1,4 @@
-//@line 44 "/home/yradtsevich/jboss/192src-copy/toolkit/content/debug.js"
+//@line 44 "/builds/slave/m-192-lnx64-xr/build/toolkit/content/debug.js"
 
 var EXPORTED_SYMBOLS = ["NS_ASSERT"];
 

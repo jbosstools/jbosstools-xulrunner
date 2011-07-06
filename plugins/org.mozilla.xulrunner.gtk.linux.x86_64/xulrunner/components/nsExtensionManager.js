@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 /*
-//@line 44 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 44 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
 */
 
 //
@@ -1400,7 +1400,7 @@ DirectoryInstallLocation.prototype = {
   QueryInterface: XPCOMUtils.generateQI([Ci.nsIInstallLocation])
 };
 
-//@line 1593 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 1593 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
 
 /**
  * Safely attempt to install or uninstall a given item ID in an install
@@ -2054,7 +2054,7 @@ function ExtensionManager() {
     InstallLocations.put(systemLocation);
   }
 
-//@line 2261 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 2261 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
 
   // Register Additional Install Locations
   var categoryManager = Cc["@mozilla.org/categorymanager;1"].
@@ -4959,13 +4959,13 @@ ExtensionManager.prototype = {
       // count to 0 to prevent this dialog from being displayed again.
       this._downloadCount = 0;
       var result;
-//@line 5166 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 5166 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
       result = this._confirmCancelDownloads(this._downloadCount,
                                             "quitCancelDownloadsAlertTitle",
                                             "quitCancelDownloadsAlertMsgMultiple",
                                             "quitCancelDownloadsAlertMsg",
                                             "dontQuitButtonWin");
-//@line 5178 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 5178 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
       if (subject instanceof Ci.nsISupportsPRBool)
         subject.data = result;
     }
@@ -5508,7 +5508,7 @@ ExtensionItemUpdater.prototype = {
   _listener           : null,
 
   /* ExtensionItemUpdater
-//@line 5746 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 5746 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
   */
   checkForUpdates: function ExtensionItemUpdater_checkForUpdates(aItems,
                                                                  aItemCount,
@@ -5692,10 +5692,18 @@ function escapeAddonURI(aItem, aAppVersion, aUpdateType, aURI, aDS)
 
   if (aDS.getItemProperty(aItem.id, "compatible") == "false")
     itemStatus += ",incompatible";
-  if (aDS.getItemProperty(aItem.id, "blocklisted") == "true")
-    itemStatus += ",blocklisted";
   if (aDS.getItemProperty(aItem.id, "satisfiesDependencies") == "false")
     itemStatus += ",needsDependencies";
+
+  var version = aDS.getItemProperty(aItem.id, "version");
+  if (!gBlocklist)
+    gBlocklist = Cc["@mozilla.org/extensions/blocklist;1"].
+                 getService(Ci.nsIBlocklistService);
+  var blockState = gBlocklist.getAddonBlocklistState(aItem.id, version);
+  if (blockState == Ci.nsIBlocklistService.STATE_BLOCKED)
+    itemStatus += ",blocklisted";
+  else if (blockState == Ci.nsIBlocklistService.STATE_SOFTBLOCKED)
+    itemStatus += ",softblocked";
 
   aURI = aURI.replace(/%ITEM_ID%/g, aItem.id);
   aURI = aURI.replace(/%ITEM_VERSION%/g, aItem.version);
@@ -5907,7 +5915,7 @@ RDFItemUpdater.prototype = {
 
   onDatasourceLoaded: function RDFItemUpdater_onDatasourceLoaded(aDatasource, aLocalItem) {
     /*
-//@line 6185 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
+//@line 6193 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/extensions/src/nsExtensionManager.js.in"
     */
     if (!aDatasource.GetAllResources().hasMoreElements()) {
       LOG("RDFItemUpdater:onDatasourceLoaded: Datasource empty.\r\n" +

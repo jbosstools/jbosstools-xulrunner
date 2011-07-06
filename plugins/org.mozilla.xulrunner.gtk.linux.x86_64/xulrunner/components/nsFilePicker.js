@@ -277,9 +277,9 @@ function (compMgr, fileSpec, location, type)
 
     compMgr.registerFactoryLocation(FILEPICKER_CID,
                                     "FilePicker JS Component",
-//@line 283 "/home/yradtsevich/jboss/192src-copy/toolkit/components/filepicker/src/nsFilePicker.js.in"
+//@line 283 "/builds/slave/m-192-lnx64-xr/build/toolkit/components/filepicker/src/nsFilePicker.js.in"
                                     "",
-//@line 285 "/home/yradtsevich/jboss/192src-copy/toolkit/components/filepicker/src/nsFilePicker.js.in"
+//@line 285 "/builds/slave/m-192-lnx64-xr/build/toolkit/components/filepicker/src/nsFilePicker.js.in"
                                     fileSpec,
                                     location,
                                     type);

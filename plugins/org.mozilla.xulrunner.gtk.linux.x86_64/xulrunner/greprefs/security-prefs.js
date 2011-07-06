@@ -27,14 +27,14 @@ pref("security.ssl3.rsa_1024_des_cbc_sha", false);
 pref("security.ssl3.rsa_rc4_40_md5", false);
 pref("security.ssl3.rsa_rc2_40_md5", false);
 // Camellia is broken on Windows CE for now, see bug 508113
-//@line 31 "/home/yradtsevich/jboss/192src-copy/netwerk/base/public/security-prefs.js"
+//@line 31 "/builds/slave/m-192-lnx64-xr/build/netwerk/base/public/security-prefs.js"
 pref("security.ssl3.dhe_rsa_camellia_256_sha", true);
 pref("security.ssl3.dhe_dss_camellia_256_sha", true);
 pref("security.ssl3.rsa_camellia_256_sha", true);
 pref("security.ssl3.dhe_rsa_camellia_128_sha", true);
 pref("security.ssl3.dhe_dss_camellia_128_sha", true);
 pref("security.ssl3.rsa_camellia_128_sha", true);
-//@line 38 "/home/yradtsevich/jboss/192src-copy/netwerk/base/public/security-prefs.js"
+//@line 38 "/builds/slave/m-192-lnx64-xr/build/netwerk/base/public/security-prefs.js"
 pref("security.ssl3.dhe_rsa_aes_256_sha", true);
 pref("security.ssl3.dhe_dss_aes_256_sha", true);
 pref("security.ssl3.rsa_aes_256_sha", true);

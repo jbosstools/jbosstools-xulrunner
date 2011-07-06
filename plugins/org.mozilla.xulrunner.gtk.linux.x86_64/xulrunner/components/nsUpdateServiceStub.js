@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 /*
-//@line 38 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateServiceStub.js"
+//@line 38 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateServiceStub.js"
 */
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 Components.utils.import("resource://gre/modules/FileUtils.jsm");
@@ -11,13 +11,13 @@ const DIR_UPDATES         = "updates";
 const FILE_UPDATE_STATUS  = "update.status";
 
 const KEY_APPDIR          = "XCurProcD";
-//@line 53 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateServiceStub.js"
+//@line 53 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateServiceStub.js"
 
 /**
-//@line 61 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateServiceStub.js"
+//@line 61 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateServiceStub.js"
  */
 function getUpdateDirNoCreate(pathArray) {
-//@line 72 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateServiceStub.js"
+//@line 72 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateServiceStub.js"
   return FileUtils.getDir(KEY_APPDIR, pathArray, false);
 }
 

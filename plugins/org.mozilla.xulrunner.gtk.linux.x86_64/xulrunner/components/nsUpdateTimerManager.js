@@ -1,6 +1,6 @@
 /* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 /*
-//@line 39 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
+//@line 39 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
 */
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
@@ -30,7 +30,7 @@ function getObserverService() {
 }
 
 /**
-//@line 78 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
+//@line 78 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
  */
 function getPref(func, preference, defaultValue) {
   try {
@@ -42,7 +42,7 @@ function getPref(func, preference, defaultValue) {
 }
 
 /**
-//@line 92 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
+//@line 92 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
  */
 function LOG(string) {
   if (gLogEnabled) {
@@ -52,7 +52,7 @@ function LOG(string) {
 }
 
 /**
-//@line 104 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
+//@line 104 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
  */
 function TimerManager() {
   getObserverService().addObserver(this, "xpcom-shutdown", false);
@@ -64,7 +64,7 @@ TimerManager.prototype = {
   _timer: null,
 
   /**
-//@line 117 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
+//@line 117 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
    */
    _timerInterval: null,
 
@@ -74,7 +74,7 @@ TimerManager.prototype = {
   _timers: { },
 
   /**
-//@line 132 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
+//@line 132 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
    */
   get _fudge() {
     return Math.round(Math.random() * this._timerInterval / 1000);
@@ -111,7 +111,7 @@ TimerManager.prototype = {
                                  Ci.nsITimer.TYPE_REPEATING_SLACK);
   },
   /**
-//@line 171 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
+//@line 171 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/update/src/nsUpdateTimerManager.js"
    */
   notify: function TM_notify(timer) {
     var prefLastUpdate;

@@ -59,9 +59,9 @@ pref("general.warnOnAboutConfig", true);
 pref("browser.bookmarks.max_backups",       5);
 
 pref("browser.cache.disk.enable",           true);
-//@line 63 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 63 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 pref("browser.cache.disk.capacity",         51200);
-//@line 67 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 67 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 pref("browser.cache.memory.enable",         true);
 //pref("browser.cache.memory.capacity",     -1);
 // -1 = determine dynamically, 0 = none, n = memory capacity in kilobytes
@@ -70,7 +70,7 @@ pref("browser.cache.disk_cache_ssl",        false);
 pref("browser.cache.check_doc_frequency",   3);
 
 pref("browser.cache.offline.enable",           true);
-//@line 76 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 76 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 // offline cache capacity in kilobytes
 pref("browser.cache.offline.capacity",         512000);
 
@@ -81,7 +81,7 @@ pref("offline-apps.quota.max",        204800);
 // the user should be warned if offline app disk usage exceeds this amount
 // (in kilobytes)
 pref("offline-apps.quota.warn",        51200);
-//@line 92 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 92 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
 // Fastback caching - if this pref is negative, then we calculate the number
 // of content viewers to cache based on the amount of available memory.
@@ -145,11 +145,11 @@ pref("media.enforce_same_site_origin", false);
 // Media cache size in kilobytes
 pref("media.cache_size", 51200);
 
-//@line 156 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 156 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 pref("media.ogg.enabled", true);
-//@line 159 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 159 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 pref("media.wave.enabled", true);
-//@line 161 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 161 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
 // Whether to autostart a media element with an |autoplay| attribute
 pref("media.autoplay.enabled", true);
@@ -162,16 +162,16 @@ pref("gfx.color_management.rendering_intent", 0);
 
 pref("gfx.downloadable_fonts.enabled", true);
 pref("gfx.downloadable_fonts.sanitize", true);
-//@line 176 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 176 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 pref("gfx.downloadable_fonts.sanitize.preserve_otl_tables", true);
-//@line 178 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 178 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
 pref("accessibility.browsewithcaret", false);
 pref("accessibility.warn_on_browsewithcaret", true);
 
 pref("accessibility.browsewithcaret_shortcut.enabled", true);
 
-//@line 185 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 185 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 // Tab focus model bit field:
 // 1 focuses text controls, 2 focuses other form elements, 4 adds links.
 // Most users will want 1, 3, or 7.
@@ -184,7 +184,7 @@ pref("accessibility.tabfocus_applies_to_xul", false);
 // unless this preference was set manually
 pref("ui.scrollToClick", 0);
 
-//@line 201 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 201 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
 pref("accessibility.usetexttospeech", "");
 pref("accessibility.usebrailledisplay", "");
@@ -528,9 +528,9 @@ pref("dom.storage.enabled", true);
 pref("dom.storage.default_quota",      5120);
 
 // Parsing perf prefs. For now just mimic what the old code did.
-//@line 545 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 545 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 pref("content.sink.pending_event_mode", 0);
-//@line 547 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 547 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
 // Disable popups from plugins by default
 //   0 = openAllowed
@@ -579,7 +579,7 @@ pref("network.protocol-handler.external.data", false);
 pref("network.protocol-handler.external.ms-help", false);
 pref("network.protocol-handler.external.shell", false);
 pref("network.protocol-handler.external.vnd.ms.radio", false);
-//@line 598 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 598 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 pref("network.protocol-handler.external.disk", false);
 pref("network.protocol-handler.external.disks", false);
 pref("network.protocol-handler.external.afp", false);
@@ -724,6 +724,7 @@ pref("network.IDN.whitelist.kr", true);
 pref("network.IDN.whitelist.li", true);
 pref("network.IDN.whitelist.lt", true);
 pref("network.IDN.whitelist.lu", true);
+pref("network.IDN.whitelist.lv", true);
 pref("network.IDN.whitelist.no", true);
 pref("network.IDN.whitelist.nu", true);
 pref("network.IDN.whitelist.nz", true);
@@ -734,6 +735,7 @@ pref("network.IDN.whitelist.sh", true);
 pref("network.IDN.whitelist.th", true);
 pref("network.IDN.whitelist.tm", true);
 pref("network.IDN.whitelist.tw", true);
+pref("network.IDN.whitelist.ua", true);
 pref("network.IDN.whitelist.vn", true);
 
 // IDN ccTLDs
@@ -742,6 +744,8 @@ pref("network.IDN.whitelist.xn--mgbaam7a8h", true);
 // cn, China, .<China> with variants
 pref("network.IDN.whitelist.xn--fiqz9s", true); // Traditional
 pref("network.IDN.whitelist.xn--fiqs8s", true); // Simplified
+// eg, Egypt, .<Masr>
+pref("network.IDN.whitelist.xn--wgbh1c", true);
 // hk, Hong Kong, .<Hong Kong>
 pref("network.IDN.whitelist.xn--j6w193g", true);
 // ir, Iran, <.Iran> with variants
@@ -749,6 +753,9 @@ pref("network.IDN.whitelist.xn--mgba3a4f16a", true);
 pref("network.IDN.whitelist.xn--mgba3a4fra", true);
 // jo, Jordan, .<Al-Ordon>
 pref("network.IDN.whitelist.xn--mgbayh7gpa", true);
+// lk, Sri Lanka, .<Lanka> and .<Ilangai>
+pref("network.IDN.whitelist.xn--fzc2c9e2c", true);
+pref("network.IDN.whitelist.xn--xkc2al3hye2a", true);
 // qa, Qatar, .<Qatar>
 pref("network.IDN.whitelist.xn--wgbl6a", true);
 // ru, Russian Federation, .<RF>
@@ -758,11 +765,14 @@ pref("network.IDN.whitelist.xn--mgberp4a5d4ar", true);
 pref("network.IDN.whitelist.xn--mgberp4a5d4a87g", true);
 pref("network.IDN.whitelist.xn--mgbqly7c0a67fbc", true);
 pref("network.IDN.whitelist.xn--mgbqly7cvafr", true);
+// sy, Syria, .<Souria>
+pref("network.IDN.whitelist.xn--ogbpf8fl", true);
 // tw, Taiwan, <.Taiwan> with variants
 pref("network.IDN.whitelist.xn--kpry57d", true);  // Traditional
 pref("network.IDN.whitelist.xn--kprw13d", true);  // Simplified
 
 // gTLDs
+pref("network.IDN.whitelist.asia", true);
 pref("network.IDN.whitelist.biz", true);
 pref("network.IDN.whitelist.cat", true);
 pref("network.IDN.whitelist.info", true);
@@ -848,7 +858,7 @@ pref("network.negotiate-auth.gsslib", "");
 // Specify if the gss lib comes standard with the OS
 pref("network.negotiate-auth.using-native-gsslib", true);
 
-//@line 872 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 882 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
 // Controls which NTLM authentication implementation we default to. True forces
 // the use of our generic (internal) NTLM authentication implementation vs. any
@@ -1269,15 +1279,15 @@ pref("font.minimum-size.x-western", 0);
 pref("font.minimum-size.x-unicode", 0);
 pref("font.minimum-size.x-user-def", 0);
 
-//@line 1690 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 1700 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
-//@line 2114 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 2124 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
-//@line 2317 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 2327 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
-//@line 2413 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 2423 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
-//@line 2416 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 2426 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 // Handled differently under Mac/Windows
 pref("network.hosts.smtp_server", "localhost");
 pref("network.hosts.pop_server", "pop");
@@ -1547,15 +1557,15 @@ pref("ui.panel.default_level_parent", true);
 
 pref("mousewheel.system_scroll_override_on_root_content.enabled", false);
 
-//@line 2688 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 2698 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
-//@line 2756 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 2766 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
-//@line 2782 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 2792 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
-//@line 2802 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 2812 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
-//@line 2810 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 2820 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
 // Login Manager prefs
 pref("signon.rememberSignons",              true);
@@ -1592,9 +1602,9 @@ pref("image.cache.timeweight", 500);
 // The default Accept header sent for images loaded over HTTP(S)
 pref("image.http.accept", "image/png,image/*;q=0.8,*/*;q=0.5");
 
-//@line 2852 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 2862 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
-//@line 2857 "/home/yradtsevich/jboss/192src-copy/modules/libpref/src/init/all.js"
+//@line 2867 "/builds/slave/m-192-lnx64-xr/build/modules/libpref/src/init/all.js"
 
 // Enable/Disable the geolocation API for content
 pref("geo.enabled", true);

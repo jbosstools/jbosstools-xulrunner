@@ -1,5 +1,5 @@
 /*
-//@line 45 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 45 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
 */
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -290,7 +290,7 @@ nsUnknownContentTypeDialog.prototype = {
 
       this.makeFileUnique(aLocalFile);
 
-//@line 354 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 354 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
 
       return aLocalFile;
     },
@@ -467,7 +467,7 @@ nsUnknownContentTypeDialog.prototype = {
         // want users to be able to autodownload .exe files. 
         var rememberChoice = this.dialogElement("rememberChoice");
 
-//@line 549 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 549 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
         if (shouldntRememberChoice) {
           rememberChoice.checked = false;
           rememberChoice.disabled = true;
@@ -607,12 +607,12 @@ nsUnknownContentTypeDialog.prototype = {
     // Returns true if opening the default application makes sense.
     openWithDefaultOK: function() {
         // The checking is different on Windows...
-//@line 699 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 699 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
             // On other platforms, default is Ok if there is a default app.
             // Note that nsIMIMEInfo providers need to ensure that this holds true
             // on each platform.
         return this.mLauncher.MIMEInfo.hasDefaultHandler;
-//@line 704 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 704 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
     },
     
     // Set "default" application description field.
@@ -633,9 +633,9 @@ nsUnknownContentTypeDialog.prototype = {
 
     // getPath:
     getPath: function (aFile) {
-//@line 727 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 727 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
       return aFile.path;
-//@line 729 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 729 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
     },
 
     // initAppAndSaveToDiskValues:
@@ -677,9 +677,9 @@ nsUnknownContentTypeDialog.prototype = {
         otherHandler.setAttribute("path",
                                   this.getPath(this.chosenApp.executable));
 
-//@line 774 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 774 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
         otherHandler.label = this.chosenApp.executable.leafName;
-//@line 776 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 776 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
         otherHandler.hidden = false;
       }
 
@@ -867,7 +867,7 @@ nsUnknownContentTypeDialog.prototype = {
           // for the file to be saved to to pass to |saveToDisk| - otherwise
           // we must ask the user to pick a save name.
 
-//@line 977 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 977 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
 
           // see @notify
           // we cannot use opener's setTimeout, see bug 420405
@@ -922,13 +922,13 @@ nsUnknownContentTypeDialog.prototype = {
     // Retrieve the pretty description from the file
     getFileDisplayName: function getFileDisplayName(file)
     { 
-//@line 1039 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 1039 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
         return file.leafName;
     },
 
     // chooseApp:  Open file picker and prompt user for application.
     chooseApp: function() {
-//@line 1110 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 1110 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
       var nsIFilePicker = Components.interfaces.nsIFilePicker;
       var fp = Components.classes["@mozilla.org/filepicker;1"]
                          .createInstance(nsIFilePicker);
@@ -954,9 +954,9 @@ nsUnknownContentTypeDialog.prototype = {
         var otherHandler = this.dialogElement("otherHandler");
         otherHandler.removeAttribute("hidden");
         otherHandler.setAttribute("path", this.getPath(this.chosenApp.executable));
-//@line 1140 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 1140 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
         otherHandler.label = this.chosenApp.executable.leafName;
-//@line 1142 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 1142 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
         this.dialogElement("openHandler").selectedIndex = 1;
         this.dialogElement("openHandler").setAttribute("lastSelectedItemID", "otherHandler");
         
@@ -969,7 +969,7 @@ nsUnknownContentTypeDialog.prototype = {
           lastSelectedID = "defaultHandler";
         openHandler.selectedItem = this.dialogElement(lastSelectedID);
       }
-//@line 1155 "/home/yradtsevich/jboss/192src-copy/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
+//@line 1155 "/builds/slave/m-192-lnx64-xr/build/toolkit/mozapps/downloads/src/nsHelperAppDlg.js.in"
     },
 
     // Turn this on to get debugging messages.
