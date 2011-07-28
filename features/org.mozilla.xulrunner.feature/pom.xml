@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.jboss.tools.xulrunner</groupId>
 		<artifactId>features</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.9.2.16-SNAPSHOT</version>
 	</parent>
 	<groupId>org.jboss.tools.xulrunner.features</groupId>
 	<artifactId>org.mozilla.xulrunner.feature</artifactId> 

@@ -4,12 +4,12 @@
 	<parent>
 		<groupId>org.jboss.tools</groupId>
 		<artifactId>xulrunner</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.9.2.16-SNAPSHOT</version>
 	</parent>
 	<groupId>org.jboss.tools.xulrunner</groupId>
 	<artifactId>plugins</artifactId>
 	<name>xulrunner.plugins</name>
-	<version>0.0.1-SNAPSHOT</version>
+	
 	<packaging>pom</packaging>
 	<modules>
 		<module>org.mozilla.xpcom</module>

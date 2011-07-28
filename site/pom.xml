@@ -9,6 +9,6 @@
 	<groupId>org.jboss.tools.xulrunner</groupId>
 	<artifactId>xulrunner.site</artifactId>
 	<name>xulrunner.site</name> 
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.9.2.16-SNAPSHOT</version>
 	<packaging>eclipse-update-site</packaging>
 </project>
