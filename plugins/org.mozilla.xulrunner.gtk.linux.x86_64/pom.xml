@@ -4,10 +4,13 @@
 	<parent>
 		<groupId>org.jboss.tools.xulrunner</groupId>
 		<artifactId>plugins</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.9.2-SNAPSHOT</version>
 	</parent>
 	<groupId>org.jboss.tools.xulrunner.plugins</groupId>
-	<artifactId>org.mozilla.xulrunner.gtk.linux.x86_64</artifactId> 
+	<artifactId>org.mozilla.xulrunner.gtk.linux.x86_64</artifactId>
+	<!--  1.9.2.19pre version is downloaded from XULRunner nightly builds
+		http://ftp.mozilla.org/pub/mozilla.org/xulrunner/nightly/latest-trunk/ .
+		This build  works on RHEL5 x86_64 unlike ones we compiled under Ununtu x86_64 (see JBIDE-9146)-->
 	<version>1.9.2.19pre</version>
 	<packaging>eclipse-plugin</packaging>
 	<build>
