@@ -13,7 +13,7 @@
 	<build>
 	   <plugins>
 	     <plugin>
-  	       <groupId>org.sonatype.tycho</groupId>
+  	       <groupId>org.eclipse.tycho</groupId>
   	       <artifactId>target-platform-configuration</artifactId>
   	       <version>${tychoVersion}</version>
   	       <configuration>
