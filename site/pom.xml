@@ -10,5 +10,5 @@
 	<artifactId>xulrunner.site</artifactId>
 	<name>xulrunner.site</name> 
 	<version>1.9.2-SNAPSHOT</version>
-	<packaging>eclipse-update-site</packaging>
+	<packaging>eclipse-repository</packaging>
 </project>
