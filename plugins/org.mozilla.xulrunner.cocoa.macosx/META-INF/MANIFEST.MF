@@ -4,4 +4,5 @@ Bundle-Name: Mozilla Xulrunner
 Bundle-SymbolicName: org.mozilla.xulrunner.cocoa.macosx;singleton:=true
 Bundle-Version: 1.9.2.16
 Bundle-Vendor: mozilla.org
+Eclipse-BundleShape: dir
 Eclipse-PlatformFilter: (& (osgi.ws=cocoa) (osgi.os=macosx) (|(osgi.arch=x86)(osgi.arch=ppc)))

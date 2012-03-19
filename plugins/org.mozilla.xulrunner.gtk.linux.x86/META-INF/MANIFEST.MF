@@ -5,5 +5,6 @@ Bundle-SymbolicName: org.mozilla.xulrunner.gtk.linux.x86;singleton:=tr
  ue
 Bundle-Version: 1.9.2.16b
 Bundle-Vendor: mozilla.org
+Eclipse-BundleShape: dir
 Eclipse-PlatformFilter: (& (osgi.ws=gtk)(osgi.os=linux)(osgi.arch=x86))
 
