@@ -21,7 +21,6 @@
          id="org.mozilla.xpcom"
          download-size="0"
          install-size="0"
-         unpack="true"
          version="0.0.0"/>
 
 </feature>
