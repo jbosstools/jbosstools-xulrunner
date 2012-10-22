@@ -1,5 +1,9 @@
 # The XulRunner project
 
+## Summary
+
+The XULRunner component as used in JBoss Tools
+
 ## Install
 
 _XulRunner_ is part of [JBoss Tools](http://jboss.org/tools) from
