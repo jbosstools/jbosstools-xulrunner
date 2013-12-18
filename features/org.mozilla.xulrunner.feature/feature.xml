@@ -13,7 +13,7 @@
    </description>
 
    <copyright>
-      Copyright (c) 2010-2011 Red Hat, Inc.
+      Copyright (c) 2010-2013 Red Hat, Inc.
    </copyright>
 
    <license>
@@ -35,7 +35,7 @@
          install-size="0"
          version="0.0.0"/>
 
-   <plugin
+   <!-- JBIDE-16280 remove because of crash in GTK3 environment <plugin
          id="org.mozilla.xulrunner.gtk.linux.x86_64"
          os="linux"
          ws="gtk"
@@ -51,7 +51,7 @@
          arch="x86"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"/> -->
 
    <plugin
          id="org.mozilla.xulrunner.cocoa.macosx"
