@@ -20,6 +20,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<module>site</module>
 	</modules>
 	<repositories>
+		<repository>
+                        <id>jbosstools-base</id>
+                        <layout>p2</layout>
+                        <url>${jbosstools-base-site}</url>
+                </repository>
+
 		<!-- To resolve parent artifact -->
 		<repository>
 			<id>jboss-public-repository-group</id>
@@ -31,6 +37,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
-		</repository>
+		</repository>		
 	</repositories>
 </project>
