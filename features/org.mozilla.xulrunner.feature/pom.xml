@@ -26,6 +26,11 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<excludes>
+						<plugin id="org.mozilla.xulrunner.cocoa.macosx"/>
+					</excludes>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>

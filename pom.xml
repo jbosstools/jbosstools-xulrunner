@@ -4,7 +4,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<parent>
 		<groupId>org.jboss.tools</groupId>
 		<artifactId>parent</artifactId>
-		<version>4.2.0.CR1-SNAPSHOT</version>
+		<version>4.3.0.Beta2-SNAPSHOT</version>
 	</parent>
 	<groupId>org.jboss.tools</groupId>
 	<artifactId>xulrunner</artifactId>
@@ -13,6 +13,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<packaging>pom</packaging>
 	<properties>
  		<tycho.scmUrl>scm:git:https://github.com/jbosstools/jbosstools-xulrunner.git</tycho.scmUrl>
+		<skipBaselineComparison>true</skipBaselineComparison>
  	</properties>
 	<modules>
 		<module>plugins</module>
@@ -20,12 +21,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<module>site</module>
 	</modules>
 	<repositories>
-		<repository>
-			<id>jbosstools-base</id>
-			<layout>p2</layout>
-			<url>${jbosstools-base-site}</url>
-		</repository>
-
 		<!-- To resolve parent artifact -->
 		<repository>
 			<id>jboss-public-repository-group</id>
@@ -37,6 +32,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
-		</repository>		
+		</repository>
 	</repositories>
 </project>
